@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
+import { Filter } from './Filter/Filter';
 
 
 
@@ -66,15 +67,8 @@ export class App extends Component {
         <ContactForm onSubmit={this.addNewContact} />
 
         <h2>Contacts</h2>
-        <label htmlFor='filter'>Find contacts by name</label>
-          <input
-            type="text"
-            name="filter"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            id='filter'
-            value={filter}
-            onChange={this.handleDataInput}
-          />
+
+        <Filter value={filter} onChange={this.handleDataInput}/>
         <ul>
           {filteredContacts.map((contact) =>
             {return (
