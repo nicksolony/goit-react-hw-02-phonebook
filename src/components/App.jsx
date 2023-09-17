@@ -20,7 +20,7 @@ export class App extends Component {
 
   handleDataInput = (e) => {
     let { name, value } = e.target;
-      this.setState({[name]:e.target.value})
+      this.setState({[name]:value})
   };
 
   addNewContact = ({ name, number }) => {
@@ -47,7 +47,7 @@ export class App extends Component {
   
   render() {
 
-    let {name,number,filter} = this.state;
+    let {filter} = this.state;
     let filteredContacts = this.filterContacts();
 
 
