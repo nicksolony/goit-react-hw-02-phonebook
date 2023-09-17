@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 
 
-
+//id = nanoid();
 
 export class App extends Component {
 
@@ -11,6 +11,10 @@ export class App extends Component {
     contacts: [],
     name: ''
   };
+
+  onNameInput = (e) => {
+      this.setState({name:e.target.value})
+    };
 
   render() {
 
@@ -35,6 +39,7 @@ export class App extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             id='name'
+            onChange={this.onNameInput}
             />
             
           <button type='submit'>Add contact</button>
