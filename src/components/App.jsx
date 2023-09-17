@@ -14,22 +14,33 @@ export class App extends Component {
 
   onNameInput = (e) => {
       this.setState({name:e.target.value})
-    };
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state.name);
+    this.setState({ name: '' });
+  }
+  
+  
 
   render() {
+
+    let contacts = this.state.contacts;
 
     return (
       <div style={{
         height: '100vh',
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         fontSize: 40,
         color: '#010101'
       }}
       >
-
-        <form>
+        <h2>Phonebook</h2>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor='name'>Name</label>
 
           <input
@@ -39,13 +50,22 @@ export class App extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             id='name'
+            value={this.state.name}
             onChange={this.onNameInput}
-            />
-            
+            />  
           <button type='submit'>Add contact</button>
         </form>
+
+        <h2>Contacts</h2>
         
-        
+        <ul>
+          {contacts.map((contact) =>
+            {return (
+            <li>{contact.name}</li>
+            )}
+          )}
+        </ul>
+
       </div>
     );
   };
