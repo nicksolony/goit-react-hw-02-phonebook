@@ -18,7 +18,15 @@ export class App extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.name);
+    let contact = {
+      id: nanoid(),
+      name: this.state.name
+    };
+
+    this.setState(({ contacts }) => ({
+      contacts: [...contacts, contact],
+    }));
+
     this.setState({ name: '' });
   }
   
@@ -61,7 +69,7 @@ export class App extends Component {
         <ul>
           {contacts.map((contact) =>
             {return (
-            <li>{contact.name}</li>
+            <li key={contact.id}>{contact.name}</li>
             )}
           )}
         </ul>
