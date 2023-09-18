@@ -25,6 +25,11 @@ export class App extends Component {
       this.setState({[name]:value})
   };
 
+  checkContactEntry = ({ name, number }) => {
+        let normalizedName = name.toLowerCase();
+
+      !this.state.contacts.find((contact)=>contact.name.toLowerCase()===normalizedName)?this.addNewContact({name,number}):alert(`${name} is already in contacts.`);
+  }
   addNewContact = ({ name, number }) => {
     
     let contact = {
@@ -65,7 +70,7 @@ export class App extends Component {
       }}
       >
         <h2>Phonebook</h2>
-        <ContactForm onSubmit={this.addNewContact} />
+        <ContactForm onSubmit={this.checkContactEntry} />
 
         <h2>Contacts</h2>
 

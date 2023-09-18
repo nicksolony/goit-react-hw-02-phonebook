@@ -7,7 +7,7 @@ export const ContactList = ({ contacts }) => {
         <List>
           {contacts.map((contact) =>
             {return (
-            <Contact contact={contact}/>
+              <Contact key={contact.id} contact={contact}/>
             )}
           )}
         </List>
