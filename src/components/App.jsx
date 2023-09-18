@@ -49,6 +49,12 @@ export class App extends Component {
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
+
+  deleteContact = (contactId) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
   
   
   
@@ -63,9 +69,10 @@ export class App extends Component {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
+        justifyContent: 'top',
+        alignItems: 'flex-start',
+        marginLeft:'50px',
+        fontSize: 18,
         color: '#010101'
       }}
       >
@@ -74,9 +81,15 @@ export class App extends Component {
 
         <h2>Contacts</h2>
 
-        <Filter value={filter} onChange={this.handleDataInput} />
+        <Filter
+          value={filter}
+          onChange={this.handleDataInput}
+        />
         
-        <ContactList contacts={filteredContacts}/>
+        <ContactList
+          contacts={filteredContacts}
+          deleteContact={this.deleteContact}
+        />
 
       </div>
     );
